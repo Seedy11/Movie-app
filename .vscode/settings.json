@@ -1,0 +1,12 @@
+{
+    "prettier.htmlWhitespaceSensitivity": "strict",
+    "prettier.jsxSingleQuote": false,
+    "prettier.useEditorConfig": false,
+    "editor.codeActionsOnSave": {
+
+    },
+    "editor.formatOnSaveMode": "file",
+    "eslint.codeActionsOnSave.mode": "all",
+    "intelephense.diagnostics.run": "onType",
+    "editor.formatOnSave": true
+}
