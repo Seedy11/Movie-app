@@ -2,7 +2,7 @@
 
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 const initialState = {
-  user: [{}],
+  user: [],
 };
 
 export const User = createSlice({
@@ -17,7 +17,6 @@ export const User = createSlice({
     },
   },
 });
-console.log("redux", User);
 
 export const { addedUser } = User.actions;
 export default User.reducer;

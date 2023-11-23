@@ -20,17 +20,6 @@ const Register = () => {
   const id = nanoid();
 
   console.log("usestate", user);
-  // const validation  = (e) => {
-  // 	// e.preventDefault()
-
-  // 	// if (password === rePassword) {
-
-  // 		// alert('password match ')
-
-  // 		dispatch(addedUser({firstName, lastName, email , password }))
-
-  // 	//  }
-  // }
 
   return (
     <FormContainer>
@@ -90,12 +79,8 @@ const Register = () => {
         <Button
           variant="primary"
           type="submit"
-          onClick={
-            () =>
-              dispatch(
-                addedUser([{ id, firstName, lastName, email, password }])
-              )
-            // console.log("play", id, firstName, lastName, email, password)
+          onClick={() =>
+            dispatch(addedUser([id, firstName, lastName, email, password]))
           }>
           Submit
         </Button>
