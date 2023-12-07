@@ -22,10 +22,14 @@ export default function App() {
           style={{ textDecoration: "none", fontSize: "2rem" }}>
           Register
         </Link>
+        <Link to="/login" style={{ textDecoration: "none", fontSize: "2rem" }}>
+          Login
+        </Link>
       </HeaderContainer>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
 
       <Footer />

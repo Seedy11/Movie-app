@@ -14,10 +14,29 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const user = useSelector((state) => state.register.user);
   const dispatch = useDispatch();
   const id = nanoid();
+  const userData = {
+    userId: id,
+    firstName: firstName,
+    LastName: lastName,
+    Email: email,
+    Password: password,
+  };
+
+  const userValidation = (e) => {
+    if (!firstName || !lastName || !email || !password || !rePassword)
+      setErrorMessage(true);
+    else if (password === rePassword) {
+      dispatch(addedUser(userData));
+      setErrorMessage(false);
+    } else {
+      setErrorMessage(true);
+    }
+  };
 
   console.log("usestate", user);
 
@@ -26,7 +45,7 @@ const Register = () => {
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>First Name</Form.Label>
-          <Form.Control
+          <input
             type="name"
             placeholder="First Name"
             onChange={(e) => setFirstName(e.target.value)}
@@ -34,6 +53,7 @@ const Register = () => {
             required
           />
         </Form.Group>
+
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Last Name</Form.Label>
           <Form.Control
@@ -75,13 +95,16 @@ const Register = () => {
             required
           />
         </Form.Group>
-
+        {errorMessage ? (
+          <p style={{ color: "red" }}>field can not be empty</p>
+        ) : null}
         <Button
           variant="primary"
           type="submit"
-          onClick={() =>
-            dispatch(addedUser([id, firstName, lastName, email, password]))
-          }>
+          onClick={(e) => {
+            e.preventDefault();
+            userValidation(e.target.value);
+          }}>
           Submit
         </Button>
       </Form>

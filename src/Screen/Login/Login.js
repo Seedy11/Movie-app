@@ -1,37 +1,25 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import FormContainer from "./Login.element";
 import { useSelector } from "react-redux";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const user = useSelector((state) => state.register);
-  console.log("selector", user);
+  const data = user.user;
+  console.log("seedy", data);
+  const renderListOfUserNames = (names) => {
+    return names.map((name) => <li>{name}</li>);
+  };
+
   return (
     <FormContainer>
-      {/* <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>First Name</Form.Label>
-          <Form.Control
-            type="name"
-            placeholder="First Name"
-            onChange={(e) => setFirstName(e.target.value)}
-            value={firstName}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Last Name</Form.Label>
-          <Form.Control
-            type="name"
-            placeholder="Last Name"
-            onChange={(e) => setLastName(e.target.value)}
-            value={lastName}
-            required
-          />
-        </Form.Group>
+      <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email </Form.Label>
           <Form.Control
@@ -44,7 +32,7 @@ const Login = () => {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Re-type Password</Form.Label>
+          <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
             placeholder="Password"
@@ -53,18 +41,8 @@ const Login = () => {
             required
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            onChange={(e) => setRePassword(e.target.value)}
-            value={rePassword}
-            required
-          />
-        </Form.Group>
 
-        <Button
+        {/* <Button
           variant="primary"
           type="submit"
           onClick={
@@ -75,8 +53,12 @@ const Login = () => {
             // console.log("play", id, firstName, lastName, email, password)
           }>
           Submit
-        </Button>
-      </Form> */}
+        </Button> */}
+        <div>
+          <h2>Name List:</h2>
+          <ul>{renderListOfUserNames(data)}</ul>
+        </div>
+      </Form>
     </FormContainer>
   );
 };
