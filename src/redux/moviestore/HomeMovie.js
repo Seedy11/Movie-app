@@ -1,15 +1,14 @@
 /** @format */
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { type } from "@testing-library/user-event/dist/type";
 import axios from "axios";
 
-export const movieStore = createAsyncThunk(
-  "movie/data",
-  async (name, thunkAPI) => {
+export const movieHomeStore = createAsyncThunk(
+  "homeMovie/data",
+  async (thunkAPI) => {
     try {
       const data = await axios.get(
-        `http://www.omdbapi.com/?s='${name}'&apikey=f1aa2fec&`
+        `http://www.omdbapi.com/?s='spiderman'&apikey=f1aa2fec&`
       );
 
       return data.data.Search;
@@ -21,30 +20,30 @@ export const movieStore = createAsyncThunk(
 const initialState = {
   movieItems: [{}],
 };
-export const movieSlide = createSlice({
+export const movieHomeSlide = createSlice({
   name: "movie",
   initialState,
   status: "fulfilled",
   reducers: {
-    movieAdded: (state, action) => {
+    movieDisplay: (state, action) => {
       state.status = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(movieStore.pending, (state) => {
+      .addCase(movieHomeStore.pending, (state) => {
         state.status = "idle";
       })
-      .addCase(movieStore.fulfilled, (state, action) => {
+      .addCase(movieHomeStore.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.movieItems = action.payload;
       })
-      .addCase(movieStore.rejected, (state, action) => {
+      .addCase(movieHomeStore.rejected, (state, action) => {
         console.log(action);
         state.status = "failed";
       });
   },
 });
 
-export const { movieAdded } = movieSlide.actions;
-export default movieSlide.reducer;
+export const { movieDisplay } = movieHomeSlide.actions;
+export default movieHomeSlide.reducer;

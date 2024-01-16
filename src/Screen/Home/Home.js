@@ -1,45 +1,28 @@
 /** @format */
 
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect } from "react";
 import Card from "../../components/Card/Card";
-import { Headers } from "../../components/Header/Headers";
-import { useDispatch } from "react-redux";
-import { MovieStore, movieStore } from "../../redux/moviestore/getMovieList";
+import { useDispatch, useSelector } from "react-redux";
+import { movieHomeStore } from "../../redux/moviestore/HomeMovie";
 
 export default function Home() {
-  const [post, setPost] = useState("");
-  const [movieSearch, setMovieSearch] = useState("");
   const dispatch = useDispatch();
+  // useEffect(dispatch(movieAdded));
 
-  async function getMovieData() {
-    try {
-      const getData = await axios.get(
-        `http://www.omdbapi.com/?s='${movieSearch}'&apikey=f1aa2fec&`
-      );
-      setPost(getData.data.Search);
-      console.log("data", getData.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  const handleChange = (value) => {
-    setMovieSearch(value);
-    getMovieData(value);
-  };
+  useEffect(() => {
+    dispatch(movieHomeStore());
+  }, [movieHomeStore]);
+
+  const akido = useSelector((state) => state.homeMovie.movieItems);
+  console.log("akido", akido);
 
   return (
     <>
-      <Headers
-        onChange={(e) => handleChange(e.target.value)}
-        value={movieSearch}
-      />
-
-      {!post ? (
+      {!akido ? (
         <Card title={"NO MOVIE"} />
       ) : (
-        post.map((post) => (
+        akido.map((post) => (
           <Card
             key={post.id}
             cardType="movieCard"

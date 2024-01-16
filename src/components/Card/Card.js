@@ -1,12 +1,7 @@
 /** @format */
 
-import React, { useState } from "react";
-import {
-  CardContainer,
-  CardWrapper,
-  Gap,
-  SmallContainer,
-} from "./Card.element";
+import React from "react";
+import { CardContainer, Gap, SmallContainer } from "./Card.element";
 import Text from "../../components/Text/Text";
 
 function Card(props) {
