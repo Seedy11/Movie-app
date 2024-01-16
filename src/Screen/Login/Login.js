@@ -13,9 +13,9 @@ const Login = () => {
   const user = useSelector((state) => state.register);
   const data = user.user;
   console.log("seedy", data);
-  const renderListOfUserNames = (names) => {
-    return names.map((name) => <li>{name}</li>);
-  };
+  // const renderListOfUserNames = (names) => {
+  //   return names.map((name) => <li>{name}</li>);
+  // };
 
   return (
     <FormContainer>
@@ -55,8 +55,8 @@ const Login = () => {
           Submit
         </Button> */}
         <div>
-          <h2>Name List:</h2>
-          <ul>{renderListOfUserNames(data)}</ul>
+          {/* <h2>Name List:</h2> */}
+          {/* <ul>{renderListOfUserNames(data)}</ul> */}
         </div>
       </Form>
     </FormContainer>

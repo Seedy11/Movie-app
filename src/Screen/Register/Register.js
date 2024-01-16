@@ -1,8 +1,8 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Button, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import FormContainer from "../Login/Login.element";
 import { useDispatch, useSelector } from "react-redux";
 import { addedUser } from "../../redux/getUser";
@@ -19,12 +19,15 @@ const Register = () => {
   const user = useSelector((state) => state.register.user);
   const dispatch = useDispatch();
   const id = nanoid();
+
+  const navigation = useNavigate();
   const userData = {
     userId: id,
     firstName: firstName,
     LastName: lastName,
     Email: email,
     Password: password,
+    reTypePassword: rePassword,
   };
 
   const userValidation = (e) => {
@@ -33,6 +36,7 @@ const Register = () => {
     else if (password === rePassword) {
       dispatch(addedUser(userData));
       setErrorMessage(false);
+      navigation("/login");
     } else {
       setErrorMessage(true);
     }
@@ -76,7 +80,7 @@ const Register = () => {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Re-type Password</Form.Label>
+          <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
             placeholder="Password"
@@ -86,7 +90,7 @@ const Register = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Re-type Password</Form.Label>
           <Form.Control
             type="password"
             placeholder="Password"
