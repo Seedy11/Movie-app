@@ -1,7 +1,6 @@
 /** @format */
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { type } from "@testing-library/user-event/dist/type";
 import axios from "axios";
 
 export const movieStore = createAsyncThunk(

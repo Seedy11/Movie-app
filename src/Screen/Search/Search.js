@@ -7,30 +7,19 @@ import Card from "../../components/Card/Card";
 import { Headers } from "../../components/Header/Headers";
 import { useDispatch, useSelector } from "react-redux";
 import { movieAdded, movieStore } from "../../redux/moviestore/getMovieList";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const [movieSearch, setMovieSearch] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(movieAdded);
   }, [movieAdded]);
 
-  const akido = useSelector((state) => state.movie.movieItems);
-  console.log("akido", akido);
+  const movieData = useSelector((state) => state.movie.movieItems);
 
-  // async function testData() {
-  //   try {
-  //     const getData = await axios.get(
-  //       `http://www.omdbapi.com/?i=tt0462499&apikey=f1aa2fec&plot=full`
-  //     );
-
-  //     console.log("data", getData.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-  // console.log("testing API", testData());
   const handleChange = (value) => {
     setMovieSearch(value);
     dispatch(movieStore(value));
@@ -43,10 +32,10 @@ export default function Home() {
         value={movieSearch}
       />
 
-      {!akido ? (
+      {!movieData ? (
         <Card title={"NO MOVIE"} />
       ) : (
-        akido.map((post) => (
+        movieData.map((post) => (
           <Card
             key={post.id}
             cardType="homeCard"
@@ -54,6 +43,7 @@ export default function Home() {
             Image={post.Poster}
             Genre={post.Plot}
             Year={post.Year}
+            onClick={() => navigate(`/movieDetail/${post.imdbID}`)}
           />
         ))
       )}

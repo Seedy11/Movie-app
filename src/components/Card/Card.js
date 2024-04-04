@@ -8,7 +8,7 @@ function Card(props) {
   switch (props.cardType) {
     case "homeCard":
       return (
-        <CardContainer>
+        <CardContainer onClick={props.onClick}>
           <div>
             <img src={props.Image} className="movieImage" />
           </div>
@@ -26,7 +26,7 @@ function Card(props) {
       );
     case "movieCard":
       return (
-        <SmallContainer>
+        <SmallContainer onClick={props.onClick}>
           <img src={props.Image} className="movieCardImage" />
           <Text textType="h2" text={props.title} />
         </SmallContainer>
