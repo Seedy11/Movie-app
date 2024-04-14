@@ -28,7 +28,7 @@ export const CardContainer = styled.div`
 `;
 
 export const SmallContainer = styled.div`
-  margin: 0px 10px;
+  margin: 1rem 2rem;
   text-align: center;
   width: 200px;
   box-sizing: border-box;
@@ -38,12 +38,16 @@ export const SmallContainer = styled.div`
 
   .movieCardImage {
     width: 100%;
-    height: 80%;
+    height: 250px;
     border-radius: 15px;
+    @media only screen and (max-width: 800px) {
+      width: 100%;
+      height: 80%;
+    }
   }
 
   @media only screen and (max-width: 800px) {
-    margin: 0px 5px;
+    margin: 2.5rem 0.5rem;
     display: block;
     max-width: 100%;
     height: 150px;

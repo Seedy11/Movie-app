@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Alert, Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import FormContainer from "../Login/Login.element";
 import { useDispatch, useSelector } from "react-redux";
@@ -49,7 +49,7 @@ const Register = () => {
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>First Name</Form.Label>
-          <input
+          <Form.Control
             type="name"
             placeholder="First Name"
             onChange={(e) => setFirstName(e.target.value)}
@@ -100,7 +100,9 @@ const Register = () => {
           />
         </Form.Group>
         {errorMessage ? (
-          <p style={{ color: "red" }}>field can not be empty</p>
+          <Alert variant="danger" dismissible>
+            <Alert.Heading>field can not be empty</Alert.Heading>
+          </Alert>
         ) : null}
         <Button
           variant="primary"

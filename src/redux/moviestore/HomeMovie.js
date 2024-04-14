@@ -8,7 +8,7 @@ export const movieHomeStore = createAsyncThunk(
   async (thunkAPI) => {
     try {
       const data = await axios.get(
-        `https://www.omdbapi.com/?s='rocky'&apikey=f1aa2fec&`
+        `https://www.omdbapi.com/?s='man'&apikey=f1aa2fec&`
       );
 
       return data.data.Search;

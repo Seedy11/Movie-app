@@ -1,8 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Form } from "react-bootstrap";
 import FormContainer from "./Login.element";
 import { useSelector } from "react-redux";
 
@@ -13,9 +12,6 @@ const Login = () => {
   const user = useSelector((state) => state.register);
   const data = user.user;
   console.log("seedy", data);
-  // const renderListOfUserNames = (names) => {
-  //   return names.map((name) => <li>{name}</li>);
-  // };
 
   return (
     <FormContainer>

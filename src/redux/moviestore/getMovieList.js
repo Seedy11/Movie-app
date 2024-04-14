@@ -18,7 +18,7 @@ export const movieStore = createAsyncThunk(
   }
 );
 const initialState = {
-  movieItems: [{}],
+  movieItems: [],
 };
 export const movieSlide = createSlice({
   name: "movie",

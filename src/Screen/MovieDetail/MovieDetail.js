@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
 function MovieDetail() {
@@ -13,7 +14,7 @@ function MovieDetail() {
     async function movieDetailData() {
       try {
         const getData = await axios.get(
-          `http://www.omdbapi.com/?i=${movieId}&apikey=f1aa2fec&plot=full`
+          `https://www.omdbapi.com/?i=${movieId}&apikey=f1aa2fec&plot=full`
         );
         setMovieDetail(getData.data);
       } catch (error) {
@@ -29,15 +30,19 @@ function MovieDetail() {
       {!movieDetail ? (
         <h2>no movie</h2>
       ) : (
-        <div>
-          <h1>{movieDetail.Title}</h1>
-          <img src={movieDetail.Poster}></img>
-          <p>{movieDetail.Actors}</p>
-          <p>{movieDetail.Awards}</p>
-          <p>{movieDetail.BoxOffice}</p>
-          <p>{movieDetail.Country}</p>
-          <p>{movieDetail.Genre}</p>
-        </div>
+        <Row style={{ marginBottom: "10rem" }}>
+          <Col sm={4}>
+            <img src={movieDetail.Poster}></img>
+          </Col>
+          <Col sm={6}>
+            {" "}
+            <p>{movieDetail.Actors}</p>
+            <p>{movieDetail.Awards}</p>
+            <p>{movieDetail.BoxOffice}</p>
+            <p>{movieDetail.Country}</p>
+            <p>{movieDetail.Genre}</p>
+          </Col>
+        </Row>
       )}
     </div>
   );
