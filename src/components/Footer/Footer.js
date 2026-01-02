@@ -1,15 +1,26 @@
-import React from 'react'
-import { FooterContainer } from './Footer.element'
-import Text from '../Text/Text'
+/** @format */
 
-function Footer() {
+import React from "react";
+import { FooterContainer } from "./Footer.element";
+
+export default function Footer() {
   return (
     <FooterContainer>
-       <Text textType='h2' text='Product' />
-       <Text textType='h2' text='Useful links' />
-       <Text textType='h2' text='Contact' />
-    </FooterContainer>
-  )
-}
+      <div className="footer-content">
+        <h3>TIGERMOVIE</h3>
+        <p>Netflix-inspired movie discovery platform built with React.</p>
 
-export default Footer
+        <div className="footer-links">
+          <a href="/">Home</a>
+          <a href="/search">Search</a>
+          <a href="/login">Login</a>
+          <a href="/register">Register</a>
+        </div>
+
+        <span>
+          © {new Date().getFullYear()} TIGERMOVIE. All rights reserved.
+        </span>
+      </div>
+    </FooterContainer>
+  );
+}

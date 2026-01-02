@@ -2,59 +2,71 @@
 
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
-import FormContainer from "./Login.element";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {
+  FormContainer,
+  FormCard,
+  StyledFormControl,
+  StyledLabel,
+  StyledButton,
+  StyledAlert,
+} from "./Login.element";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const user = useSelector((state) => state.register);
-  const data = user.user;
-  console.log("seedy", data);
+  const users = useSelector((state) => state.register.user);
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const user = users.find(
+      (u) => u.Email === email && u.Password === password
+    );
+
+    if (user) {
+      setErrorMessage("");
+      navigate("/"); // redirect to home
+    } else {
+      setErrorMessage("Invalid email or password");
+    }
+  };
 
   return (
     <FormContainer>
-      <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email </Form.Label>
-          <Form.Control
+      <FormCard>
+        <h2>Login</h2>
+        {errorMessage && <StyledAlert>{errorMessage}</StyledAlert>}
+
+        <Form.Group controlId="email">
+          <StyledLabel>Email</StyledLabel>
+          <StyledFormControl
             type="email"
-            placeholder="email address"
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email"
             value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
+        <Form.Group controlId="password">
+          <StyledLabel>Password</StyledLabel>
+          <StyledFormControl
             type="password"
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter your password"
             value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </Form.Group>
 
-        {/* <Button
-          variant="primary"
-          type="submit"
-          onClick={
-            () =>
-              dispatch(
-                addedUser([{ id, firstName, lastName, email, password }])
-              )
-            // console.log("play", id, firstName, lastName, email, password)
-          }>
-          Submit
-        </Button> */}
-        <div>
-          {/* <h2>Name List:</h2> */}
-          {/* <ul>{renderListOfUserNames(data)}</ul> */}
-        </div>
-      </Form>
+        <StyledButton type="submit" onClick={handleLogin}>
+          Login
+        </StyledButton>
+      </FormCard>
     </FormContainer>
   );
 };

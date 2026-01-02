@@ -3,10 +3,18 @@
 import React, { useState } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import FormContainer from "../Login/Login.element";
+
 import { useDispatch, useSelector } from "react-redux";
 import { addedUser } from "../../redux/getUser";
 import { nanoid } from "@reduxjs/toolkit";
+import {
+  FormCard,
+  FormContainer,
+  StyledAlert,
+  StyledButton,
+  StyledFormControl,
+  StyledLabel,
+} from "./Register.element";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -46,74 +54,81 @@ const Register = () => {
 
   return (
     <FormContainer>
-      <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>First Name</Form.Label>
-          <Form.Control
-            type="name"
+      <FormCard>
+        <h2>Create Account</h2>
+
+        {errorMessage && (
+          <StyledAlert>
+            {password !== rePassword
+              ? "Passwords do not match"
+              : "All fields are required"}
+          </StyledAlert>
+        )}
+
+        <Form.Group controlId="firstName">
+          <StyledLabel>First Name</StyledLabel>
+          <StyledFormControl
+            type="text"
             placeholder="First Name"
-            onChange={(e) => setFirstName(e.target.value)}
             value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
             required
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Last Name</Form.Label>
-          <Form.Control
-            type="name"
+        <Form.Group controlId="lastName">
+          <StyledLabel>Last Name</StyledLabel>
+          <StyledFormControl
+            type="text"
             placeholder="Last Name"
-            onChange={(e) => setLastName(e.target.value)}
             value={lastName}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email </Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="email address"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
+            onChange={(e) => setLastName(e.target.value)}
             required
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
+        <Form.Group controlId="email">
+          <StyledLabel>Email</StyledLabel>
+          <StyledFormControl
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </Form.Group>
+
+        <Form.Group controlId="password">
+          <StyledLabel>Password</StyledLabel>
+          <StyledFormControl
             type="password"
             placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
             value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Re-type Password</Form.Label>
-          <Form.Control
+
+        <Form.Group controlId="rePassword">
+          <StyledLabel>Re-type Password</StyledLabel>
+          <StyledFormControl
             type="password"
-            placeholder="Password"
-            onChange={(e) => setRePassword(e.target.value)}
+            placeholder="Re-type Password"
             value={rePassword}
+            onChange={(e) => setRePassword(e.target.value)}
             required
           />
         </Form.Group>
-        {errorMessage ? (
-          <Alert variant="danger" dismissible>
-            <Alert.Heading>field can not be empty</Alert.Heading>
-          </Alert>
-        ) : null}
-        <Button
-          variant="primary"
+
+        <StyledButton
           type="submit"
           onClick={(e) => {
             e.preventDefault();
-            userValidation(e.target.value);
+            userValidation();
           }}>
-          Submit
-        </Button>
-      </Form>
+          Create Account
+        </StyledButton>
+      </FormCard>
     </FormContainer>
   );
 };

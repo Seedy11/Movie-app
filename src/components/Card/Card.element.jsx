@@ -3,16 +3,15 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
-  margin: 1rem;
-  background-color: white;
-  min-height: 300px;
-  min-width: 60%;
-  margin-bottom: 1rem;
+  margin: 2.5rem;
+  text-align: center;
+  // width: 200px;
   box-sizing: border-box;
-  border-radius: 2rem;
-  padding: 20px;
-  display: flex;
-  gap: 2rem;
+  width: 350px;
+  font-size: 12px;
+
+  // height: 200px;
+  // margin-bottom: 7rem;
 
   @media only screen and (max-width: 700px) {
     min-width: 100%;
@@ -20,9 +19,12 @@ export const CardContainer = styled.div`
   }
 
   .movieImage {
-    border-radius: 2rem;
+    width: 100%;
+    height: 350px;
+    border-radius: 15px;
     @media only screen and (max-width: 800px) {
-      width: 150px;
+      width: 100%;
+      height: 80%;
     }
   }
 `;

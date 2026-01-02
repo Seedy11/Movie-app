@@ -10,18 +10,13 @@ function Card(props) {
       return (
         <CardContainer onClick={props.onClick}>
           <div>
-            <img src={props.Image} className="movieImage" />
-          </div>
-          <Gap>
+            <img
+              src={`https://image.tmdb.org/t/p/w500/${props.Image}`}
+              className="movieImage"
+            />
             <Text textType="h2" text={props.title} />
-            <div className="textDisplay">
-              <Text textType="p" text={props.Genre} />
-            </div>
-            <div className="textDisplay">
-              <Text>Year: </Text>
-              <Text textType="p" text={props.Year} />
-            </div>
-          </Gap>
+            <Text textType="p" text={props.Genre} />
+          </div>
         </CardContainer>
       );
     case "movieCard":

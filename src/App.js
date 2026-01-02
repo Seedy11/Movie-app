@@ -16,50 +16,25 @@ export default function App() {
   return (
     <BrowserRouter>
       <HeaderContainer>
-        <Navbar expand="lg">
-          {/* <p>uhuihjjjjjjjjjjjjjj</p> */}
+        <Navbar expand="lg" className="navbar-dark">
+          <Navbar.Brand as={Link} to="/" className="logo">
+            TIGERMOVIE
+          </Navbar.Brand>
+
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link>
-                <Link
-                  to="/"
-                  style={{ textDecoration: "none", fontSize: "2rem" }}>
-                  Home
-                </Link>
+            <Nav className="ms-auto">
+              <Nav.Link as={Link} to="/">
+                Home
               </Nav.Link>
-              <Nav.Link to="login">
-                <Link
-                  to="/search"
-                  style={{
-                    textDecoration: "none",
-                    fontSize: "2rem",
-                    marginLeft: "2rem",
-                  }}>
-                  Search
-                </Link>
+              <Nav.Link as={Link} to="/search">
+                Search
               </Nav.Link>
-              <Nav.Link href="#action/3.2">
-                <Link
-                  to="/register"
-                  style={{
-                    textDecoration: "none",
-                    fontSize: "2rem",
-                    marginLeft: "2rem",
-                  }}>
-                  Register
-                </Link>
+              <Nav.Link as={Link} to="/register">
+                Register
               </Nav.Link>
-              <Nav.Link href="#action/3.1">
-                <Link
-                  to="login"
-                  style={{
-                    textDecoration: "none",
-                    fontSize: "2rem",
-                    marginLeft: "2rem",
-                  }}>
-                  Login
-                </Link>
+              <Nav.Link as={Link} to="/login">
+                Login
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
